@@ -3,7 +3,7 @@ var fs = require('fs');
 var folder = process.argv[2];
 fs.readdir(
     folder, 
-    function(err, files)
+    function(err, items)
     {
         if(err)
         {
@@ -11,9 +11,26 @@ fs.readdir(
         }
         else
         {
-            files.forEach(function(file)
+            items.forEach(function(item)
             {
-                console.log(path.basename(file));
+               if(path.extname(item) == '')
+               {
+                fs.readdir(folder + '//' + path.basename(item), function(err, files)
+                {
+                    if(err)
+                    {
+                        return console.error(err);
+                    }
+                    else
+                    {
+                        files.forEach(function(file)
+                        {
+                            console.log(path.basename(item) + '/' +  path.basename(file));
+                        })
+                    }
+                })
+               }
+               console.log(path.basename(item));
             });
         }
     }
