@@ -1,5 +1,9 @@
-var i = process.argv.length;
-for(var f = 2; f < i; f++)
+function f()
 {
-    console.log(`Hi ${process.argv[f]}`);
+    var i = process.argv.length;
+    for(var f = 2; f < i; f++)
+    {
+        console.log(`Hi ${process.argv[f]}`);
+    }
 }
+f();
